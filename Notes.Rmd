@@ -1,0 +1,75 @@
+---
+title: "Notes"
+output: html_document
+date: "2025-01-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+# In this document I will copy and paste my notes from class on 1-23
+```
+```{r}
+library(tidyverse)
+f<- file.choose()
+d <- read_csv(f, col_names = TRUE)
+class(d)
+str(d)
+glimpse(d)
+head(d)
+# the str and glimpse function give you similar information on your data
+# Using head can be more specific that the first 10 (or, in the case of tail, the last 10) by adding a comma 
+# Running the view function will open the table view so that you can locally view your data
+gs <- d$MeanGroupSize
+class(gs)
+head(gs)
+head(gs +1)
+# This adds 1 to the value of every number in that column of the data
+# To view the group size field as a column rather than a row, use d[,"MeanGroupSize] when setting the variable
+mean(gs)
+# This returns a null value because that vector is missing data
+sd(gs)
+# Same error is returned for the standard deviation function for the same reason 
+# This can be amended by telling the program to ignore null values
+mean(gs, na.rm = TRUE)
+# Paste takes a list of vectors as arguments and manipulates the data to have them pasted together
+sciname <- paste(d$Genus, d$Species, sep =" ")
+head(sciname) 
+# The paste 0 function works similarly but does not specify a separator
+# The unique function will search through a vector of data a will pull out the unique ones- or values that deviate from the norm, which can be useful for removing replicates
+name <- unique(d$Genus)
+# writing this with the double bracket operator will work when applied to a dataframe
+head(d)
+# There's also a process in which you can use the source function to call code that you've written in another script
+# Potentially useful for the jag data stats? i.e. if I can create a more general code for HR calcs
+
+
+#To include a code block that doesn't have the messy bits, use #/ include:false
+```
+# I don't really know why I popped those into code blocks
+# Force of habit
+```{r}
+getwd()
+```
+
